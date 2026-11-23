@@ -57,7 +57,7 @@ window.addEventListener("touchmove", e => {
     M.my = (t.clientY/c.height - 0.5)*Math.PI*1.5;
   }
 }, {passive:false});
-const btnFS = document.querySelector(".btn-fs");
+const btnFS = Array.from(document.querySelectorAll("button")).find(b=>b.textContent.includes("PANTALLA COMPLETA"));
 if(btnFS){
   const salir = document.createElement("button");
   salir.textContent = "[ X SALIR ]";
