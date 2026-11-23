@@ -46,22 +46,49 @@ canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
 <script>
 document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
-</html><script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
+</html><script>< window.innerHeight;
   if(esMovil){
     cv.style.transform = "scale(0.68)";
     cv.style.transformOrigin = "center center";
@@ -72,33 +99,53 @@ canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
 <script>
 document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
 </html><style>
 html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
 canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
 </style>
-<script>
-window.addEventListener("load", function(){
-  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
+<script></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
     cv.style.transform = "scale(0.68)";
     cv.style.transformOrigin = "center center";
@@ -109,145 +156,7 @@ canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
-}, {passive: false});
-</script>
-</body>
-</html>tion(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  cv.style.touchAction = "none";
-  cv.addEventListener("touchstart", e => {
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousedown", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:true});
-  cv.addEventListener("touchmove", e => {
-    e.preventDefault();
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-    window.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:false});
-  cv.addEventListener("touchend", () => {
-    cv.dispatchEvent(new MouseEvent("mouseup", {bubbles:true}));
-  }, {passive:true});
-})();
-</script><meta name="vi<style>
-html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
-canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
-</style>
-<script>
-window.addEventListener("load", function(){
-  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
-  if(esMovil){
-    cv.style.transform = "scale(0.68)";
-    cv.style.transformOrigin = "center center";
-  }
-})();
-</script><style>
-canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
-div,section{pointer-events:none!important}
-button,select,input{pointer-events:auto!important}
-</style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
-}, {passive: false});
-</script>
-</body>
-</html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
-onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
-onmousedown=e=>{if(e.target.tagName==="CANVAS"){M.pulso=1.35;M.warp=14;}};
-onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
-activar("ambos");
-</script><script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  cv.style.touchAction = "none";
-  cv.addEventListener("touchstart", e => {
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousedown", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:true});
-  cv.addEventListener("touchmove", e => {
-    e.preventDefault();
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-    window.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:false});
-  cv.addEventListener("touchend", () => {
-    cv.dispatchEvent(new MouseEvent("mouseup", {bubbles:true}));
-  }, {passive:true});
-})();
-</script><meta name="vi<style>
-html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
-canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
-</style>
-<script>
-window.addEventListener("load", function(){
-  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
-  if(esMovil){
-    cv.style.transform = "scale(0.68)";
-    cv.style.transformOrigin = "center center";
-  }
-})();
-</script><style>
-canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
-div,section{pointer-events:none!important}
-button,select,input{pointer-events:auto!important}
-</style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
-}, {passive: false});
-</script>
-</body>
-</html>ner("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
+<script></script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
@@ -258,52 +167,42 @@ document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
-</html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
-onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
-onmousedown=e=>{if(e.target.tagName==="CANVAS"){M.pulso=1.35;M.warp=14;}};
-onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
-activar("ambos");
-</script><script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  cv.style.touchAction = "none";
-  cv.addEventListener("touchstart", e => {
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousedown", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:true});
-  cv.addEventListener("touchmove", e => {
-    e.preventDefault();
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-    window.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:false});
-  cv.addEventListener("touchend", () => {
-    cv.dispatchEvent(new MouseEvent("mouseup", {bubbles:true}));
-  }, {passive:true});
-})();
-</script><meta name="vi<style>
+</html></script><meta name="vi<style>
 html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
 canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
 </style>
-<script>
-window.addEventListener("load", function(){
-  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
+<script></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
     cv.style.transform = "scale(0.68)";
     cv.style.transformOrigin = "center center";
@@ -314,19 +213,7 @@ canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
+<script></script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
@@ -337,10 +224,213 @@ document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
+</script>
+</body>
+</html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
+onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
+onmousedown=e=>{if(e.target.tagName==="CANVAS"){M.pulso=1.35;M.warp=14;}};
+onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
+activar("ambos");
+</script><script></script><meta name="vi<style>
+html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
+canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
+</style>
+<script></script><meta name="vi<script>< window.innerHeight;
+  if(esMovil){
+    cv.style.transform = "scale(0.68)";
+    cv.style.transformOrigin = "center center";
+  }
+})();
+</script><style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
+}, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
+</script>
+</body>
+</html></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
+}, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
+</script>
+</body>
+</html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
+onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
+onmousedown=e=>{if(e.target.tagName==="CANVAS"){M.pulso=1.35;M.warp=14;}};
+onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
+activar("ambos");
+</script><script></script><meta name="vi<style>
+html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
+canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
+</style>
+<script></script><meta name="vi<script>< window.innerHeight;
+  if(esMovil){
+    cv.style.transform = "scale(0.68)";
+    cv.style.transformOrigin = "center center";
+  }
+})();
+</script><style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
+}, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
 </html>e(ev);
@@ -354,19 +444,13 @@ canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
@@ -377,10 +461,35 @@ document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
 </html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
@@ -388,76 +497,29 @@ onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.
 onmousedown=e=>{if(e.target.tagName==="CANVAS"){M.pulso=1.35;M.warp=14;}};
 onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
 activar("ambos");
-</script><script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  cv.style.touchAction = "none";
-  cv.addEventListener("touchstart", e => {
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousedown", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:true});
-  cv.addEventListener("touchmove", e => {
-    e.preventDefault();
-    const t = e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-    window.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:false});
-  cv.addEventListener("touchend", () => {
-    cv.dispatchEvent(new MouseEvent("mouseup", {bubbles:true}));
-  }, {passive:true});
-})();
-</script><meta name="vi<style>
+</script><script></script><meta name="vi<style>
 html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
 canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
 </style>
-<script>
-window.addEventListener("load", function(){
-  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
+<script></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
     cv.style.transform = "scale(0.68)";
     cv.style.transformOrigin = "center center";
   }
 })();
-</script><style>canvas{touch-action:none!important}</style><script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var ev = {clientX: t.clientX, clientY: t.clientY, target: e.target};
-  if(typeof window.onmousemove === "function") window.onmousemove(ev);
-  if(typeof document.onmousemove === "function") document.onmousemove(ev);
-  var cv = document.querySelector("canvas");
-  if(cv && typeof cv.onmousemove === "function") cv.onmousemove(ev);
-}, {passive: false});
 </script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
@@ -468,36 +530,42 @@ document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
-</html>ouches[0];
-    cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-    window.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:false});
-  cv.addEventListener("touchend", () => {
-    cv.dispatchEvent(new MouseEvent("mouseup", {bubbles:true}));
-  }, {passive:true});
-})();
-</script><meta name="vi<style>
+</html></script><meta name="vi<style>
 html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
 canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
 </style>
-<script>
-window.addEventListener("load", function(){
-  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
+<script></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
     cv.style.transform = "scale(0.68)";
     cv.style.transformOrigin = "center center";
@@ -511,36 +579,19 @@ window.addEventListener("touchmove", function(e){
   if(typeof window.onmousemove === "function") window.onmousemove({clientX: t.clientX, clientY: t.clientY});
 }, {passive: false});
 </script>
-<style>canvas{touch-action:none!important}</style><script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var ev = {clientX: t.clientX, clientY: t.clientY, target: e.target};
-  if(typeof window.onmousemove === "function") window.onmousemove(ev);
-  if(typeof document.onmousemove === "function") document.onmousemove(ev);
-  var cv = document.querySelector("canvas");
-  if(cv && typeof cv.onmousemove === "function") cv.onmousemove(ev);
-}, {passive: false});
-</script>
+
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
@@ -551,126 +602,117 @@ document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
-</html> e.touches[0];
-    cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-    window.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
-  }, {passive:false});
-  cv.addEventListener("touchend", () => {
-    cv.dispatchEvent(new MouseEvent("mouseup", {bubbles:true}));
-  }, {passive:true});
-})();
-</script><meta name="vi<style>
+</html></script><meta name="vi<style>
 html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
 canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
 </style>
+<script></script><meta name="vi<script>< window.innerHeight;
+  if(esMovil){
+    cv.style.transform = "scale(0.68)";
+    cv.style.transformOrigin = "center center";
+  }
+})();
+</script><script></script>
 <script>
+window.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  if(typeof window.onmousemove === "function") window.onmousemove({clientX: t.clientX, clientY: t.clientY});
+}, {passive: false});
+</script>
+
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
+}, {passive: false});
+
 window.addEventListener("load", function(){
-  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
 });
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
-  if(esMovil){
-    cv.style.transform = "scale(0.68)";
-    cv.style.transformOrigin = "center center";
-  }
-})();
-</script><script>
-window.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true}));
-}, {passive: false});
-</script>
-<script>
-window.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  if(typeof window.onmousemove === "function") window.onmousemove({clientX: t.clientX, clientY: t.clientY});
-}, {passive: false});
-</script>
-<style>canvas{touch-action:none!important}</style><script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var ev = {clientX: t.clientX, clientY: t.clientY, target: e.target};
-  if(typeof window.onmousemove === "function") window.onmousemove(ev);
-  if(typeof document.onmousemove === "function") document.onmousemove(ev);
-  var cv = document.querySelector("canvas");
-  if(cv && typeof cv.onmousemove === "function") cv.onmousemove(ev);
-}, {passive: false});
-</script>
-<style>
-canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
-div,section{pointer-events:none!important}
-button,select,input{pointer-events:auto!important}
-</style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
-<style>
-canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
-div,section{pointer-events:none!important}
-button,select,input{pointer-events:auto!important}
-</style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
-}, {passive: false});
 </script>
 </body>
-</html>(){ window.dispatchEvent(new Event("resize")); }
-  ajustarPantalla();
-  setTimeout(ajustarPantalla, 200);
-  window.addEventListener("orientationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
+</html></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
     cv.style.transform = "scale(0.68)";
     cv.style.transformOrigin = "center center";
   }
 })();
-</script><script>
-window.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true}));
-}, {passive: false});
-</script>
+</script><script></script>
 <script>
 window.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
@@ -679,36 +721,19 @@ window.addEventListener("touchmove", function(e){
   if(typeof window.onmousemove === "function") window.onmousemove({clientX: t.clientX, clientY: t.clientY});
 }, {passive: false});
 </script>
-<style>canvas{touch-action:none!important}</style><script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var ev = {clientX: t.clientX, clientY: t.clientY, target: e.target};
-  if(typeof window.onmousemove === "function") window.onmousemove(ev);
-  if(typeof document.onmousemove === "function") document.onmousemove(ev);
-  var cv = document.querySelector("canvas");
-  if(cv && typeof cv.onmousemove === "function") cv.onmousemove(ev);
-}, {passive: false});
-</script>
+
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
@@ -719,32 +744,44 @@ document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
-</html>ntationchange", ajustarPantalla);
-});
-</script><meta name="vi<script>
-(function(){
-  const cv = document.querySelector("canvas");
-  if(!cv) return;
-  const esMovil = window.innerWidth < window.innerHeight;
+</html></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
     cv.style.transform = "scale(0.68)";
     cv.style.transformOrigin = "center center";
   }
 })();
-</script><script>
-window.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true}));
-}, {passive: false});
-</script>
+</script><script></script>
 <script>
 window.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
@@ -753,36 +790,19 @@ window.addEventListener("touchmove", function(e){
   if(typeof window.onmousemove === "function") window.onmousemove({clientX: t.clientX, clientY: t.clientY});
 }, {passive: false});
 </script>
-<style>canvas{touch-action:none!important}</style><script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var ev = {clientX: t.clientX, clientY: t.clientY, target: e.target};
-  if(typeof window.onmousemove === "function") window.onmousemove(ev);
-  if(typeof document.onmousemove === "function") document.onmousemove(ev);
-  var cv = document.querySelector("canvas");
-  if(cv && typeof cv.onmousemove === "function") cv.onmousemove(ev);
-}, {passive: false});
-</script>
+
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
 button,select,input{pointer-events:auto!important}
 </style>
-<script>
-document.addEventListener("touchmove", function(e){
-  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
-  e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
-}, {passive: false});
-</script>
+<script></script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script></script>
 <style>
 canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
 div,section{pointer-events:none!important}
@@ -793,10 +813,35 @@ document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
   var t = e.touches.item(0);
-  window.dispatchEvent(new MouseEvent("mousemove", {
-    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-  }));
+  window.dispatchEvent(new MouseEvent("mousemove", {clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window}));
 }, {passive: false});
+
+window.addEventListener("load", function(){
+  var btn = Array.from(document.querySelectorAll("button")).find(b => b.textContent.toUpperCase().includes("PANTALLA COMPLETA"));
+  if(!btn) return;
+  var salir = document.createElement("button");
+  salir.textContent = "[ X SALIR ]";
+  salir.style.cssText = "display:none;position:fixed;top:14px;right:14px;z-index:99999;background:rgba(10,15,28,0.9);color:#38bdf8;border:1px solid #38bdf8;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;font-weight:bold;";
+  document.body.appendChild(salir);
+  function modoFS(on){
+    document.querySelectorAll("body > div, body > section, body > button").forEach(el => {
+      if(el === salir || el.querySelector("canvas") || el.tagName === "CANVAS") return;
+      el.style.display = on ? "none" : "";
+    });
+    salir.style.display = on ? "block" : "none";
+  }
+  btn.addEventListener("click", function(e){
+    e.stopImmediatePropagation();
+    modoFS(true);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if(req) req.call(el).catch(()=>{});
+  }, true);
+  salir.addEventListener("click", function(){
+    modoFS(false);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  });
+});
 </script>
 </body>
 </html>
