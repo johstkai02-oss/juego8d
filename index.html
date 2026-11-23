@@ -43,7 +43,7 @@ onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
 activar("ambos");
 c.addEventListener("touchstart", e => {
   if(e.touches.length===1){
-    const t = e.touches;
+    const t = e.touches.item(0);
     M.mx = (t.clientX/c.width - 0.5)*Math.PI*1.5;
     M.my = (t.clientY/c.height - 0.5)*Math.PI*1.5;
     M.pulso = 1.35; M.warp = 14;
@@ -52,7 +52,7 @@ c.addEventListener("touchstart", e => {
 c.addEventListener("touchmove", e => {
   if(e.touches.length===1){
     e.preventDefault();
-    const t = e.touches;
+    const t = e.touches.item(0);
     M.mx = (t.clientX/c.width - 0.5)*Math.PI*1.5;
     M.my = (t.clientY/c.height - 0.5)*Math.PI*1.5;
   }
