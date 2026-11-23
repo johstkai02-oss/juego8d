@@ -50,13 +50,10 @@ button,select,input{pointer-events:auto!important}
 document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
 }, {passive: false});
 </script>
 </body>
@@ -79,13 +76,10 @@ button,select,input{pointer-events:auto!important}
 document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
 }, {passive: false});
 </script>
 </body>
@@ -119,13 +113,10 @@ button,select,input{pointer-events:auto!important}
 document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
-  var t = e.touches[0];
-  var cv = document.querySelector("canvas");
-  if(cv){
-    cv.dispatchEvent(new MouseEvent("mousemove", {
-      clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
-    }));
-  }
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
 }, {passive: false});
 </script>
 </body>
@@ -177,6 +168,77 @@ button,select,input{pointer-events:auto!important}
 document.addEventListener("touchmove", function(e){
   if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
   e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
+}, {passive: false});
+</script>
+</body>
+</html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
+onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
+onmousedown=e=>{if(e.target.tagName==="CANVAS"){M.pulso=1.35;M.warp=14;}};
+onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
+activar("ambos");
+</script><script>
+(function(){
+  const cv = document.querySelector("canvas");
+  if(!cv) return;
+  cv.style.touchAction = "none";
+  cv.addEventListener("touchstart", e => {
+    const t = e.touches[0];
+    cv.dispatchEvent(new MouseEvent("mousedown", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
+  }, {passive:true});
+  cv.addEventListener("touchmove", e => {
+    e.preventDefault();
+    const t = e.touches[0];
+    cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
+    window.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
+  }, {passive:false});
+  cv.addEventListener("touchend", () => {
+    cv.dispatchEvent(new MouseEvent("mouseup", {bubbles:true}));
+  }, {passive:true});
+})();
+</script><meta name="vi<style>
+html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
+canvas { position:fixed!important; top:0!important; left:0!important; width:100vw!important; height:100dvh!important; display:block!important; }
+</style>
+<script>
+window.addEventListener("load", function(){
+  function ajustarPantalla(){ window.dispatchEvent(new Event("resize")); }
+  ajustarPantalla();
+  setTimeout(ajustarPantalla, 200);
+  window.addEventListener("orientationchange", ajustarPantalla);
+});
+</script><meta name="vi<script>
+(function(){
+  const cv = document.querySelector("canvas");
+  if(!cv) return;
+  const esMovil = window.innerWidth < window.innerHeight;
+  if(esMovil){
+    cv.style.transform = "scale(0.68)";
+    cv.style.transformOrigin = "center center";
+  }
+})();
+</script><style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
+}, {passive: false});
+</script>
+</body>
+</html>ner("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
   var t = e.touches[0];
   var cv = document.querySelector("canvas");
   if(cv){
@@ -184,6 +246,21 @@ document.addEventListener("touchmove", function(e){
       clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
     }));
   }
+}, {passive: false});
+</script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
 }, {passive: false});
 </script>
 </body>
@@ -250,6 +327,21 @@ document.addEventListener("touchmove", function(e){
   }
 }, {passive: false});
 </script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
+}, {passive: false});
+</script>
 </body>
 </html>e(ev);
   if(typeof document.onmousemove === "function") document.onmousemove(ev);
@@ -273,6 +365,21 @@ document.addEventListener("touchmove", function(e){
       clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
     }));
   }
+}, {passive: false});
+</script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
 }, {passive: false});
 </script>
 </body>
@@ -351,6 +458,21 @@ document.addEventListener("touchmove", function(e){
   }
 }, {passive: false});
 </script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
+}, {passive: false});
+</script>
 </body>
 </html>ouches[0];
     cv.dispatchEvent(new MouseEvent("mousemove", {bubbles:true, clientX:t.clientX, clientY:t.clientY, buttons:1}));
@@ -417,6 +539,21 @@ document.addEventListener("touchmove", function(e){
       clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
     }));
   }
+}, {passive: false});
+</script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
 }, {passive: false});
 </script>
 </body>
@@ -495,6 +632,21 @@ document.addEventListener("touchmove", function(e){
   }
 }, {passive: false});
 </script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
+}, {passive: false});
+</script>
 </body>
 </html>(){ window.dispatchEvent(new Event("resize")); }
   ajustarPantalla();
@@ -557,6 +709,21 @@ document.addEventListener("touchmove", function(e){
   }
 }, {passive: false});
 </script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
+}, {passive: false});
+</script>
 </body>
 </html>ntationchange", ajustarPantalla);
 });
@@ -614,6 +781,21 @@ document.addEventListener("touchmove", function(e){
       clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
     }));
   }
+}, {passive: false});
+</script>
+<style>
+canvas{touch-action:none!important;position:fixed!important;inset:0!important;z-index:1!important}
+div,section{pointer-events:none!important}
+button,select,input{pointer-events:auto!important}
+</style>
+<script>
+document.addEventListener("touchmove", function(e){
+  if(["BUTTON","SELECT","INPUT"].includes(e.target.tagName)) return;
+  e.preventDefault();
+  var t = e.touches.item(0);
+  window.dispatchEvent(new MouseEvent("mousemove", {
+    clientX: t.clientX, clientY: t.clientY, bubbles: true, cancelable: true, view: window
+  }));
 }, {passive: false});
 </script>
 </body>
