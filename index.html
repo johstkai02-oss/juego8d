@@ -37,7 +37,7 @@ function proyND(pN,ang){let p=[...pN],N=p.length,ix=M.mx*2,iy=M.my*2;if(N===1)re
 function loop(){if(!M.act)return;ctx.fillStyle="rgba(2,2,5,0.32)";ctx.fillRect(0,0,c.width,c.height);drawEst();M.ang+=0.014;M.pulso+=(1-M.pulso)*0.08;if(M.modo==="hipercubo"||M.modo==="ambos"){let pts=M.hip.v.map(v=>proyND(v,M.ang*0.6));ctx.lineWidth=M.dimActual>15?0.25:0.45;let alfa=M.dimActual>25?0.12:0.22;M.hip.a.forEach((ar,i)=>{let p1=pts[ar.at(0)],p2=pts[ar.at(1)];ctx.strokeStyle=`hsla(${(i+M.ang*50)%360},75%,55%,${alfa})`;ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();});}if(M.modo==="manzana"||M.modo==="ambos"){let pts=M.man.n.map(n=>proyND(n.co,M.ang));ctx.lineWidth=1.1;M.man.c.forEach((cn,i)=>{let n1=M.man.n[cn.at(0)],p1=pts[cn.at(0)],p2=pts[cn.at(1)];ctx.strokeStyle=n1.t==="t"?"rgba(50,255,120,0.9)":`hsla(${(340+Math.sin(M.ang+i*0.05)*35)%360},90%,60%,0.7)`;ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();});}requestAnimationFrame(loop);}
 function cambiarDim(val){M.dimActual=parseInt(val);let nom=NOMBRES_100[M.dimActual].toUpperCase();document.querySelectorAll(".lblD").forEach(el=>el.innerText=M.dimActual+"D");document.querySelectorAll(".lblNom").forEach(el=>el.innerText=nom);initHip(M.dimActual);initMan(M.dimActual);activar(M.modo);}
 function activar(m){if(!M.est.length)initEst();if(!M.hip.v.length)initHip(M.dimActual);if(!M.man.n.length)initMan(M.dimActual);M.modo=m;M.pulso=1.25;M.warp=6;let nom=NOMBRES_100[M.dimActual];const txt={"hipercubo":nom+" ("+M.dimActual+"D) activo ("+M.hip.v.length+" vértices).","manzana":"Manzana proyectada en "+nom+" ("+M.dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
-onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};ontouchmove=e=>{if(e.target.tagName==="CANVAS"){e.preventDefault();let t=e.touches.item(0);M.mx=(t.clientX/c.width-0.5)*Math.PI;M.my=(t.clientY/c.height-0.5)*Math.PI;}};ontouchstart=e=>{if(e.target.tagName==="CANVAS"){let t=e.touches.item(0);M.mx=(t.clientX/c.width-0.5)*Math.PI;M.my=(t.clientY/c.height-0.5)*Math.PI;M.pulso=1.35;M.warp=14;}};
+onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};window.addEventListener("touchstart",e=>{if(!["BUTTON","SELECT","INPUT"].includes(e.target.tagName)){let t=e.touches.item(0);M.mx=(t.clientX/c.width-0.5)*Math.PI;M.my=(t.clientY/c.height-0.5)*Math.PI;M.pulso=1.35;M.warp=14;}},{passive:true});window.addEventListener("touchmove",e=>{if(!["BUTTON","SELECT","INPUT"].includes(e.target.tagName)){e.preventDefault();let t=e.touches.item(0);M.mx=(t.clientX/c.width-0.5)*Math.PI;M.my=(t.clientY/c.height-0.5)*Math.PI;}},{passive:false});
 onmousedown=e=>{if(e.target.tagName==="CANVAS"){M.pulso=1.35;M.warp=14;}};
 onresize=()=>{c.width=innerWidth;c.height=innerHeight;};
 activar("ambos");
@@ -149,6 +149,19 @@ window.addEventListener("load", function(){
   ajustarPantalla();
   setTimeout(ajustarPantalla, 200);
   window.addEventListener("orientationchange", ajustarPantalla);
+});
+</script><meta name="vi<script>
+(function(){
+  const cv = document.querySelector("canvas");
+  if(!cv) return;
+  const esMovil = window.innerWidth < window.innerHeight;
+  if(esMovil){
+    cv.style.transform = "scale(0.68)";
+    cv.style.transformOrigin = "center center";
+  }
+})();
+</script></body>
+</html>ntationchange", ajustarPantalla);
 });
 </script><meta name="vi<script>
 (function(){
