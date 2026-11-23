@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Simulación Raíz 1D a 100D - Manzana y Fusión</title><style>body{margin:0;background:#020205;color:#00ffcc;font-family:monospace;overflow:hidden}#btnToggleMenu{position:absolute;top:15px;left:15px;z-index:20;background:rgba(2,2,5,0.85);color:#00ffcc;border:1px solid #00ffcc;padding:6px 12px;font-family:monospace;font-size:12px;font-weight:bold;cursor:pointer;border-radius:4px}#btnToggleMenu:hover{background:#00ffcc;color:#020205}#ui{position:absolute;top:52px;left:15px;z-index:10;background:rgba(2,2,5,0.88);padding:15px;border:1px solid #00ffcc;border-radius:8px;width:285px}#ui.oculto{display:none}#ui h2{font-size:15px;margin:0 0 10px 0}.botones{display:flex;flex-direction:column;gap:8px}button.opt{background:#00ffcc;color:#020205;border:none;padding:10px 14px;font-weight:bold;cursor:pointer;border-radius:4px;text-align:left;width:100%}button.opt:hover{background:#fff}.btn-m{background:#ff3366 !important;color:#fff !important}.btn-f{background:#ffaa00 !important;color:#020205 !important}.btn-fs{background:#222238 !important;color:#00ffcc !important;border:1px solid #00ffcc !important;margin-top:4px}.btn-fs:hover{background:#00ffcc !important;color:#020205 !important}.caja-nd{background:rgba(170,68,255,0.18);border:1px solid #aa44ff;padding:8px;border-radius:6px;display:flex;flex-direction:column;gap:6px;margin-bottom:4px}select{background:#0a0a14;color:#00ffcc;border:1px solid #aa44ff;padding:8px;border-radius:4px;font-family:monospace;font-weight:bold;cursor:pointer;width:100%}#estado{font-size:11px;margin:10px 0 0 0;color:#99ffee;line-height:1.4}canvas{display:block;cursor:crosshair}</style></head><body>
 <div id="hudWarp" style="position:absolute;bottom:15px;left:15px;z-index:15;background:rgba(2,2,5,0.88);border:1px solid #00ffcc;padding:12px 15px;border-radius:8px;font-family:monospace;font-size:12px;color:#00ffcc;width:255px;">
 <div id="hudDatos">WARP: 1.00x<br>6.30 años luz/min<br>993,376,700 km/s<br>Distancia: 0.0000 años luz</div>
@@ -87,6 +88,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html><script>< window.innerHeight;
   if(esMovil){
@@ -139,6 +163,29 @@ window.addEventListener("load", function(){
     if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
   });
 });
+</script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
 </script>
 </body>
 </html><style>
@@ -197,6 +244,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html></script><meta name="vi<style>
 html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
@@ -254,6 +324,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
 onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
@@ -315,6 +408,29 @@ window.addEventListener("load", function(){
     if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
   });
 });
+</script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
 </script>
 </body>
 </html></script>
@@ -364,6 +480,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
 onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
@@ -431,6 +570,29 @@ window.addEventListener("load", function(){
     if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
   });
 });
+</script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
 </script>
 </body>
 </html>e(ev);
@@ -491,6 +653,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html>dimActual+"D).","ambos":"Fusión "+nom+" ("+M.dimActual+"D) + Manzana + Estrellas."};document.getElementById("estado").innerText=txt[m];if(!M.act){M.act=true;loop();}}
 onmousemove=e=>{M.mx=(e.clientX/c.width-0.5)*Math.PI;M.my=(e.clientY/c.height-0.5)*Math.PI;};
@@ -559,6 +744,29 @@ window.addEventListener("load", function(){
     if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
   });
 });
+</script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
 </script>
 </body>
 </html></script><meta name="vi<style>
@@ -632,6 +840,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html></script><meta name="vi<style>
 html, body { margin:0!important; padding:0!important; width:100vw!important; height:100dvh!important; overflow:hidden!important; }
@@ -705,6 +936,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
@@ -774,6 +1028,29 @@ window.addEventListener("load", function(){
   });
 });
 </script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
+</script>
 </body>
 </html></script><meta name="vi<script>< window.innerHeight;
   if(esMovil){
@@ -842,6 +1119,29 @@ window.addEventListener("load", function(){
     if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
   });
 });
+</script>
+<script>
+(function(){
+  var esc = 1, distIni = 0, cv = document.querySelector("canvas");
+  document.addEventListener("touchstart", function(e){
+    if(e.touches.length === 2){
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      distIni = Math.hypot(dx, dy);
+    }
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if(e.touches.length === 2 && cv && distIni > 0){
+      e.preventDefault();
+      var dx = e.touches.item(0).clientX - e.touches.item(1).clientX;
+      var dy = e.touches.item(0).clientY - e.touches.item(1).clientY;
+      var dist = Math.hypot(dx, dy);
+      esc = Math.min(3, Math.max(0.45, esc * (dist / distIni)));
+      distIni = dist;
+      cv.style.transform = "scale(" + esc.toFixed(2) + ")";
+    }
+  }, {passive:false});
+})();
 </script>
 </body>
 </html>
